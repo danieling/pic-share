@@ -1,0 +1,9 @@
+
+npm init 
+npm install i express express-handlebars mongoose morgan multer fs-extra errorhandler md5 
+
+
+RUN APP
+1. install nodejs
+2. inside imgShare folder run node src/index.js
+
