@@ -2,8 +2,9 @@ const path = require('path');
 const exhbs = require('express-handlebars');
 const morgan = require('morgan');
 const multer = require('multer');
+const errorHandler = require('errorhandler');
 const express = require('express');
-
+const routes = require('../routes/route');
 
 module.exports = app => {
     app.set('port', process.env.PORT || '3000');
@@ -23,6 +24,14 @@ module.exports = app => {
     app.use(multer({dest: path.join(__dirname, '../public/upload/temp')}).single('image'));
     app.use(express.urlencoded({extended: false}));
     app.use(express.json());
+
+    routes(app);
+
+    app.use('/public', express.static(path.join(__dirname, '../public')))
+
+    if('development' === app.get('env')) {
+        app.use(errorHandler);
+    }
 
     return app;
 }

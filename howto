@@ -1,6 +1,7 @@
 
 npm init 
-npm install i express express-handlebars mongoose morgan multer fs-extra errorhandler md5 
+npm install i express express-handlebars mongoose morgan multer fs-extra errorhandler md5
+npm instal nodemon -D
 
 
 RUN APP
