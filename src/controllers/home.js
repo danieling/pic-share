@@ -1,7 +1,7 @@
 const ctrl = {}
 
 ctrl.index = (req, res) => {
-    res.send('Index Page')
+    res.render('index')
 }
 
 module.exports = ctrl
