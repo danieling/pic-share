@@ -25,9 +25,9 @@ module.exports = app => {
     app.use(express.urlencoded({extended: false}));
     app.use(express.json());
 
-    routes(app);
+    app.use('/public', express.static(path.join(__dirname, '../public')));
 
-    app.use('/public', express.static(path.join(__dirname, '../public')))
+    routes(app);
 
     if('development' === app.get('env')) {
         app.use(errorHandler);
