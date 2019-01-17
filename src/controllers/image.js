@@ -4,8 +4,9 @@ const { randomName } = require('../helpers/libs')
 const { Image } = require('../models')
 const ctrl = {}
 
-ctrl.id = (req, res) => {
-
+ctrl.id = async (req, res) => {
+    const img = await Image.findOne({filename: {$regex: req.params.image_id}})
+    res.render('image', {img})
 }
 
 ctrl.create = (req, res) => {
@@ -26,8 +27,7 @@ ctrl.create = (req, res) => {
                     description: req.body.description
                 })
                 const imgSave = await newImg.save()
-                //res.redirect('/images')
-                res.send('Works!')
+                res.redirect('/images/' + name)
             } else {
                 await fs.unlink(imgPath)
                 res.status(500).json({ error: 'Only images are Allowed'})
